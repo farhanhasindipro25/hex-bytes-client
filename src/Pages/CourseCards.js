@@ -1,28 +1,25 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import Button from "react-bootstrap/Button";
-import Card from "react-bootstrap/Card";
+
+import { useLoaderData } from "react-router-dom";
+import CourseCard from "./CourseCard";
 
 const CourseCards = () => {
+  const courses = useLoaderData();
+  console.log(courses);
+
   return (
     <div>
-      <Container>
-        <Row>
-          <Col lg="3">
-            <Card style={{ width: "18rem" }}>
-              <Card.Img variant="top" src="holder.js/100px180" />
-              <Card.Body>
-                <Card.Title>Card Title</Card.Title>
-                <Card.Text>
-                  Some quick example text to build on the card title and make up
-                  the bulk of the card's content.
-                </Card.Text>
-                <Button variant="primary">Go somewhere</Button>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-      </Container>
+      <Row className="mt-5">
+        <Col lg="3">
+          {courses.map((course) => (
+            <CourseCard
+              key={course.details.course_id}
+              course={course}
+            ></CourseCard>
+          ))}
+        </Col>
+      </Row>
     </div>
   );
 };

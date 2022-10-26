@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
+import { Link } from "react-router-dom";
 
 const Menubar = () => {
   return (
@@ -22,7 +22,14 @@ const Menubar = () => {
                 Courses
               </Nav.Link>
               <Nav.Link className="fw-semibold text-white px-5">FAQ</Nav.Link>
-              <Nav.Link className="fw-semibold text-white px-5">Blog</Nav.Link>
+              <Nav.Link className="px-5">
+                <Link
+                  className="text-decoration-none fw-semibold text-white"
+                  to="/blog"
+                >
+                  Blog
+                </Link>
+              </Nav.Link>
             </Nav>
             <Nav>
               <Nav.Link className="fw-semibold text-white d-flex gap-2">
