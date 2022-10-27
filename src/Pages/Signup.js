@@ -1,13 +1,33 @@
 import React from "react";
+import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../UserContext/UserContext";
 
 const Signup = () => {
+  const { createUser } = useContext(AuthContext);
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const name = form.name.value;
+    const photoURL = form.photoURL.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(name, photoURL, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
   return (
     <div className="container mt-5 bg-dark p-5 rounded-5 w-75">
       <h3 className="text-center text-warning fw-bolder">Sign Up</h3>
-      <Form className="w-75 mx-auto mt-5">
+      <Form className="w-75 mx-auto mt-5" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicText">
           <Form.Label className="text-white">Full Name</Form.Label>
           <Form.Control
@@ -18,7 +38,7 @@ const Signup = () => {
             className="bg-light border-0"
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="formBasicText">
+        <Form.Group className="mb-3" controlId="formBasicPhotoURL">
           <Form.Label className="text-white">Photo URL</Form.Label>
           <Form.Control
             type="text"

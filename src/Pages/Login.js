@@ -4,12 +4,36 @@ import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
+import { useContext } from "react";
+import { AuthContext } from "../UserContext/UserContext";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
+  const { providerLogIn } = useContext(AuthContext);
+
+  const googleProvider = new GoogleAuthProvider();
+
+  const handleGoogleSignIn = () => {
+    providerLogIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => console.error(error));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    const form = event.target;
+    const email = form.email.value;
+    const password = form.password.value;
+    console.log(email, password);
+  };
+
   return (
     <div className="container mt-5 bg-dark p-5 rounded-5">
       <h3 className="text-center text-warning fw-bolder">Log In</h3>
-      <Form className="mt-5 w-75 mx-auto">
+      <Form className="mt-5 w-75 mx-auto" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label className="text-white">Email address</Form.Label>
           <Form.Control
@@ -56,7 +80,7 @@ const Login = () => {
         <hr className="text-white w-50 mx-auto pb-3" />
       </div>
       <div className="d-flex justify-content-center gap-3">
-        <Button variant="light">
+        <Button variant="light" onClick={handleGoogleSignIn}>
           <FcGoogle />
         </Button>
         <Button variant="light">
