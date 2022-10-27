@@ -5,7 +5,6 @@ import Checkout from "../Pages/Checkout";
 import CourseDetails from "../Pages/CourseDetails";
 import CoursesPage from "../Pages/CoursesPage";
 import FAQ from "../Pages/FAQ";
-import Home from "../Pages/Home";
 import Login from "../Pages/Login";
 import Signup from "../Pages/Signup";
 import NotFound from "./NotFound";
@@ -16,10 +15,6 @@ export const routes = createBrowserRouter([
     path: "/",
     element: <Main></Main>,
     children: [
-      {
-        path: "/",
-        element: <Home></Home>,
-      },
       {
         path: "/courses",
         element: <CoursesPage></CoursesPage>,

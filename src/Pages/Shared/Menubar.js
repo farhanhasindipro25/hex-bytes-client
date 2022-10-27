@@ -42,14 +42,6 @@ const Menubar = () => {
               <Nav.Link className="px-5 text-center">
                 <Link
                   className="text-decoration-none fw-semibold text-white"
-                  to="/"
-                >
-                  Home
-                </Link>
-              </Nav.Link>
-              <Nav.Link className="px-5 text-center">
-                <Link
-                  className="text-decoration-none fw-semibold text-white"
                   to="/courses"
                 >
                   Courses
