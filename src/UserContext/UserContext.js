@@ -4,6 +4,7 @@ import {
   createUserWithEmailAndPassword,
   getAuth,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
   signInWithPopup,
 } from "firebase/auth";
 import app from "../Firebase/firebase.config";
@@ -25,6 +26,10 @@ const UserContext = ({ children }) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
+  const userLogIn = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password);
+  };
+
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       console.log("Inside Authentication State Change", currentUser);
@@ -33,7 +38,7 @@ const UserContext = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const authInfo = { user, providerLogIn, createUser };
+  const authInfo = { user, providerLogIn, createUser, userLogIn };
 
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

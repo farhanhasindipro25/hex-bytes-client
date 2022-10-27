@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useContext } from "react";
@@ -9,7 +9,9 @@ import { AuthContext } from "../UserContext/UserContext";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { providerLogIn } = useContext(AuthContext);
+  const { providerLogIn, userLogIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
 
@@ -28,6 +30,15 @@ const Login = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(email, password);
+
+    userLogIn(email, password)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+        form.reset();
+        navigate("/courses");
+      })
+      .catch((error) => console.error(error));
   };
 
   return (
