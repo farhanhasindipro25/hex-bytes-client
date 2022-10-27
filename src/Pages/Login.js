@@ -9,11 +9,12 @@ const Login = () => {
   return (
     <div className="container mt-5 bg-dark p-5 rounded-5">
       <h3 className="text-center text-warning fw-bolder">Log In</h3>
-      <Form className="mt-5">
+      <Form className="mt-5 w-75 mx-auto">
         <Form.Group className="mb-3" controlId="formBasicEmail">
           <Form.Label className="text-white">Email address</Form.Label>
           <Form.Control
             type="email"
+            name="email"
             placeholder="Enter your email address"
             required
             className="bg-light border-0"
@@ -24,6 +25,7 @@ const Login = () => {
           <Form.Label className="text-white">Password</Form.Label>
           <Form.Control
             type="password"
+            name="password"
             placeholder="Password"
             required
             className="bg-light border-0"
@@ -55,10 +57,10 @@ const Login = () => {
       </div>
       <div className="d-flex justify-content-center gap-3">
         <Button variant="light">
-          <FcGoogle/>
+          <FcGoogle />
         </Button>
         <Button variant="light">
-          <FaGithub/>
+          <FaGithub />
         </Button>
       </div>
     </div>
