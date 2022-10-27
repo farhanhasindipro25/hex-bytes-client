@@ -7,9 +7,13 @@ import { FaGithub } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../UserContext/UserContext";
 import { GoogleAuthProvider } from "firebase/auth";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { providerLogIn, userLogIn } = useContext(AuthContext);
+
+  const [error, setError] = useState(" ");
 
   const navigate = useNavigate();
 
@@ -21,7 +25,9 @@ const Login = () => {
         const user = result.user;
         console.log(user);
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const handleSubmit = (event) => {
@@ -36,9 +42,14 @@ const Login = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError("");
         navigate("/courses");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+        toast.error(error);
+      });
   };
 
   return (
@@ -66,6 +77,10 @@ const Login = () => {
             className="bg-light border-0"
           />
         </Form.Group>
+
+        <Form.Text className="text-danger text-center fw-semibold">
+          {error}
+        </Form.Text>
         <Button
           variant="warning w-100"
           className="mt-3 fw-semibold"

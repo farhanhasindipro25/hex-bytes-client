@@ -2,11 +2,13 @@ import React from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../UserContext/UserContext";
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -22,6 +24,7 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        navigate("/courses");
       })
       .catch((error) => console.error(error));
   };

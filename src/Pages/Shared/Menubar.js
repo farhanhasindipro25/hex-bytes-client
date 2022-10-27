@@ -3,13 +3,23 @@ import { Button } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "../../UserContext/UserContext";
 
 const Menubar = () => {
-  const { user } = useContext(AuthContext);
+  const { user, userLogOut } = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    userLogOut()
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => console.error(error));
+  };
 
   return (
     <div>
@@ -60,15 +70,31 @@ const Menubar = () => {
                   <MdWbSunny className="text-dark border-0" />
                 </Button>
               </Nav.Link>
-              <Nav.Link>
-                <Button variant="warning">
-                  <Link to="/login" className="text-decoration-none text-black">
-                    Login
-                  </Link>
-                </Button>
-
-                <div></div>
-              </Nav.Link>
+              <>
+                {user?.uid ? (
+                  <>
+                    {/* <Nav.Link>{}</Nav.Link> */}
+                    <Button onClick={handleLogOut} variant="warning">
+                      <Link className="text-decoration-none text-black">
+                        Logout
+                      </Link>
+                    </Button>
+                  </>
+                ) : (
+                  <>
+                    <Nav.Link>
+                      <Button variant="warning">
+                        <Link
+                          to="/login"
+                          className="text-decoration-none text-black"
+                        >
+                          Login
+                        </Link>
+                      </Button>
+                    </Nav.Link>
+                  </>
+                )}
+              </>
             </Nav>
           </Navbar.Collapse>
         </Container>
