@@ -35,7 +35,7 @@ const Signup = () => {
       });
   };
   return (
-    <div className="container mt-5 bg-dark p-5 rounded-5 w-75">
+    <div className="mt-5 bg-dark p-lg-5 p-md-5 px-sm-2 px-2 py-sm-5 py-5 mx-5 rounded-5 mb-5">
       <h3 className="text-center text-warning fw-bolder">Sign Up</h3>
       <Form className="w-75 mx-auto mt-5" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicText">

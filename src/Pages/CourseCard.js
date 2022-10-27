@@ -10,7 +10,6 @@ const CourseCard = ({ course }) => {
   return (
     <Col lg="4" md="6" sm="12">
       <Card
-        style={{ height: "32rem" }}
         className="bg-dark border border-5 border-dark rounded-3"
       >
         <Card.Img

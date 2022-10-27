@@ -1,14 +1,13 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../UserContext/UserContext";
 import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
-import { toast } from "react-hot-toast";
 
 const Login = () => {
   const { providerLogIn, userLogIn } = useContext(AuthContext);
@@ -16,6 +15,10 @@ const Login = () => {
   const [error, setError] = useState(" ");
 
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const from = location?.state?.from?.pathname || "/";
+  console.log(from);
 
   const googleProvider = new GoogleAuthProvider();
   const githubProvider = new GithubAuthProvider();
@@ -25,7 +28,9 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/courses");
+        if (user?.email) {
+          navigate(from, { replace: true });
+        }
       })
       .catch((error) => {
         console.error(error);
@@ -37,7 +42,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-        navigate("/courses");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -57,7 +62,7 @@ const Login = () => {
         console.log(user);
         form.reset();
         setError("");
-        navigate("/courses");
+        navigate(from, { replace: true });
       })
       .catch((error) => {
         console.error(error);
@@ -66,7 +71,7 @@ const Login = () => {
   };
 
   return (
-    <div className="container mt-5 bg-dark p-5 rounded-5">
+    <div className="mt-5 bg-dark p-lg-5 p-md-5 px-sm-2 px-2 py-sm-5 py-5 mx-5 rounded-5 mb-5">
       <h3 className="text-center text-warning fw-bolder">Log In</h3>
       <Form className="mt-5 w-75 mx-auto" onSubmit={handleSubmit}>
         <Form.Group className="mb-3" controlId="formBasicEmail">

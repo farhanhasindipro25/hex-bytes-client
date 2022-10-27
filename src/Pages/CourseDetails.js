@@ -3,22 +3,14 @@ import { Badge, Button, Card } from "react-bootstrap";
 import { Link, useLoaderData } from "react-router-dom";
 import { FaDownload } from "react-icons/fa";
 import Checkout from "./Checkout";
+import ReactPrint from "react-to-print";
 
 const CourseDetails = () => {
   const [selectedCourse, setSelectedCourse] = useState(false);
 
   const courseDetails = useLoaderData();
   console.log(courseDetails);
-  const handleSelectedCourse = () => {
-    setSelectedCourse(true);
-    if (selectedCourse) {
-      console.log("Course added", selectedCourse);
-      <Checkout
-        key={selectedCourse.course_id}
-        selectedCourse={selectedCourse}
-      ></Checkout>;
-    }
-  };
+
   return (
     <div>
       <div className="container mt-5">
@@ -29,7 +21,7 @@ const CourseDetails = () => {
             className="img-fluid rounded-5"
           />
         </Card>
-        <div className="d-flex justify-content-between mb-3">
+        <div className="d-flex justify-content-between flex-lg-row flex-md-row flex-sm-column flex-column mb-3">
           <h3 className="fw-bolder text-dark">{courseDetails.courseName}</h3>
           <Button variant="warning" className="px-5 py-2">
             <span className="me-2">Download PDF</span>
@@ -75,12 +67,11 @@ const CourseDetails = () => {
           </div>
         </div>
         <Button
-          onClick={handleSelectedCourse}
           className="px-5 py-2 d-block mx-auto mb-5 mt-5 fw-bold"
           variant="dark"
         >
           <Link
-            to={`/checkout/$courseDetails.course_id`}
+            to={`/checkout/${courseDetails.course_id}`}
             className="text-warning text-decoration-none"
           >
             Get Premium Access
