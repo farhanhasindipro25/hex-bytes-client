@@ -25,17 +25,19 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate("/courses");
       })
       .catch((error) => {
         console.error(error);
       });
   };
-  
+
   const handleGithubSignIn = () => {
     providerLogIn(githubProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate("/courses");
       })
       .catch((error) => {
         console.error(error);
@@ -121,9 +123,7 @@ const Login = () => {
         <Button variant="light" onClick={handleGoogleSignIn}>
           <FcGoogle />
         </Button>
-        <Button variant="light"
-        onClick={handleGithubSignIn}
-        >
+        <Button variant="light" onClick={handleGithubSignIn}>
           <FaGithub />
         </Button>
       </div>

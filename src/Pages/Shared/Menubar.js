@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Image } from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -8,6 +8,9 @@ import { MdDarkMode, MdWbSunny } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "../../UserContext/UserContext";
 import { useState } from "react";
+import { FaUser } from "react-icons/fa";
+import Tippy from "@tippyjs/react";
+import "tippy.js/dist/tippy.css";
 
 const Menubar = () => {
   const { user, userLogOut } = useContext(AuthContext);
@@ -82,7 +85,23 @@ const Menubar = () => {
               <>
                 {user?.uid ? (
                   <>
-                    {/* <Nav.Link>{}</Nav.Link> */}
+                    <Nav.Link className="d-flex align-items-center me-3">
+                      {user?.photoURL ? (
+                        <Tippy content={user?.displayName}>
+                          <Image
+                            className="border border-2 border-warning"
+                            style={{ height: "30px" }}
+                            roundedCircle
+                            src={user?.photoURL}
+                          ></Image>
+                        </Tippy>
+                      ) : (
+                        <FaUser
+                          style={{ height: "25px", width: "25px" }}
+                          className="text-dark bg-warning rounded-5 border border-warning border-2"
+                        ></FaUser>
+                      )}
+                    </Nav.Link>
                     <Button onClick={handleLogOut} variant="warning">
                       <Link className="text-decoration-none text-black">
                         Logout
