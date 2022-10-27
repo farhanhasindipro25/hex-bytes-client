@@ -7,9 +7,12 @@ import { Link, useNavigate } from "react-router-dom";
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "../../UserContext/UserContext";
+import { useState } from "react";
 
 const Menubar = () => {
   const { user, userLogOut } = useContext(AuthContext);
+
+  const [dark, setDark] = useState(false);
 
   const navigate = useNavigate();
 
@@ -62,13 +65,19 @@ const Menubar = () => {
               </Nav.Link>
             </Nav>
             <Nav>
-              <Nav.Link className="fw-semibold text-white d-flex gap-2">
-                <Button variant="light">
-                  <MdDarkMode className="text-dark border-0" />
-                </Button>
-                <Button variant="warning">
-                  <MdWbSunny className="text-dark border-0" />
-                </Button>
+              <Nav.Link
+                onClick={() => setDark(!dark)}
+                className="fw-semibold text-white d-flex gap-2"
+              >
+                {dark ? (
+                  <Button variant="light">
+                    <MdDarkMode className="text-dark border-0" />
+                  </Button>
+                ) : (
+                  <Button variant="warning">
+                    <MdWbSunny className="text-dark border-0" />
+                  </Button>
+                )}
               </Nav.Link>
               <>
                 {user?.uid ? (
