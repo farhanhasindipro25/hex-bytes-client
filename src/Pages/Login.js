@@ -48,7 +48,6 @@ const Login = () => {
       .catch((error) => {
         console.error(error);
         setError(error.message);
-        toast.error(error);
       });
   };
 
@@ -78,9 +77,10 @@ const Login = () => {
           />
         </Form.Group>
 
-        <Form.Text className="text-danger text-center fw-semibold">
-          {error}
+        <Form.Text className="text-danger fw-semibold">
+          <p className="text-center">{error}</p>
         </Form.Text>
+        
         <Button
           variant="warning w-100"
           className="mt-3 fw-semibold"

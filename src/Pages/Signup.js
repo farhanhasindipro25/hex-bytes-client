@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react";
 import { useContext } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
@@ -7,6 +8,7 @@ import { AuthContext } from "../UserContext/UserContext";
 
 const Signup = () => {
   const { createUser } = useContext(AuthContext);
+  const [error, setError] = useState(" ");
 
   const navigate = useNavigate();
 
@@ -24,9 +26,13 @@ const Signup = () => {
         const user = result.user;
         console.log(user);
         form.reset();
+        setError("");
         navigate("/courses");
       })
-      .catch((error) => console.error(error));
+      .catch((error) => {
+        console.error(error);
+        setError(error.message);
+      });
   };
   return (
     <div className="container mt-5 bg-dark p-5 rounded-5 w-75">
@@ -73,6 +79,11 @@ const Signup = () => {
             className="bg-light border-0"
           />
         </Form.Group>
+
+        <Form.Text className="text-danger fw-semibold">
+          <p className="text-center">{error}</p>
+        </Form.Text>
+
         <Button
           variant="warning w-100"
           className="mt-3 fw-semibold"
