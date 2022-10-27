@@ -1,11 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Badge, Button, Card } from "react-bootstrap";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { FaDownload } from "react-icons/fa";
+import Checkout from "./Checkout";
 
 const CourseDetails = () => {
+  const [selectedCourse, setSelectedCourse] = useState(false);
+
   const courseDetails = useLoaderData();
   console.log(courseDetails);
+  const handleSelectedCourse = () => {
+    setSelectedCourse(true);
+    if (selectedCourse) {
+      console.log("Course added", selectedCourse);
+      <Checkout
+        key={selectedCourse.course_id}
+        selectedCourse={selectedCourse}
+      ></Checkout>;
+    }
+  };
   return (
     <div>
       <div className="container mt-5">
@@ -62,10 +75,16 @@ const CourseDetails = () => {
           </div>
         </div>
         <Button
-          className="px-5 py-2 d-block mx-auto mb-5 mt-5 text-warning fw-bold"
+          onClick={handleSelectedCourse}
+          className="px-5 py-2 d-block mx-auto mb-5 mt-5 fw-bold"
           variant="dark"
         >
-          Get Premium Access
+          <Link
+            to={`/checkout/$courseDetails.course_id`}
+            className="text-warning text-decoration-none"
+          >
+            Get Premium Access
+          </Link>
         </Button>
       </div>
     </div>

@@ -6,7 +6,7 @@ import { FcGoogle } from "react-icons/fc";
 import { FaGithub } from "react-icons/fa";
 import { useContext } from "react";
 import { AuthContext } from "../UserContext/UserContext";
-import { GoogleAuthProvider } from "firebase/auth";
+import { GithubAuthProvider, GoogleAuthProvider } from "firebase/auth";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -18,9 +18,21 @@ const Login = () => {
   const navigate = useNavigate();
 
   const googleProvider = new GoogleAuthProvider();
+  const githubProvider = new GithubAuthProvider();
 
   const handleGoogleSignIn = () => {
     providerLogIn(googleProvider)
+      .then((result) => {
+        const user = result.user;
+        console.log(user);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  
+  const handleGithubSignIn = () => {
+    providerLogIn(githubProvider)
       .then((result) => {
         const user = result.user;
         console.log(user);
@@ -80,7 +92,7 @@ const Login = () => {
         <Form.Text className="text-danger fw-semibold">
           <p className="text-center">{error}</p>
         </Form.Text>
-        
+
         <Button
           variant="warning w-100"
           className="mt-3 fw-semibold"
@@ -109,7 +121,9 @@ const Login = () => {
         <Button variant="light" onClick={handleGoogleSignIn}>
           <FcGoogle />
         </Button>
-        <Button variant="light">
+        <Button variant="light"
+        onClick={handleGithubSignIn}
+        >
           <FaGithub />
         </Button>
       </div>
