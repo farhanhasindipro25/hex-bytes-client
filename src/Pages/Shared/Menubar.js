@@ -70,7 +70,7 @@ const Menubar = () => {
             <Nav>
               <Nav.Link
                 onClick={() => setDark(!dark)}
-                className="fw-semibold text-white d-flex gap-2"
+                className="fw-semibold text-white d-flex align-items-center justify-content-center"
               >
                 {dark ? (
                   <Button variant="light">
@@ -85,24 +85,30 @@ const Menubar = () => {
               <>
                 {user?.uid ? (
                   <>
-                    <Nav.Link className="d-flex align-items-center me-3">
+                    <Nav.Link className="d-flex align-items-center me-3 justify-content-center">
                       {user?.photoURL ? (
                         <Tippy content={user?.displayName}>
                           <Image
                             className="border border-2 border-warning"
-                            style={{ height: "30px" }}
+                            style={{ height: "30px", width: "30px" }}
                             roundedCircle
                             src={user?.photoURL}
                           ></Image>
                         </Tippy>
                       ) : (
-                        <FaUser
-                          style={{ height: "25px", width: "25px" }}
-                          className="text-dark bg-warning rounded-5 border border-warning border-2"
-                        ></FaUser>
+                        <Tippy content={user?.displayName}>
+                          <FaUser
+                            style={{ height: "25px", width: "25px" }}
+                            className="text-dark bg-warning rounded-5 border border-warning border-2"
+                          ></FaUser>
+                        </Tippy>
                       )}
                     </Nav.Link>
-                    <Button onClick={handleLogOut} variant="warning">
+                    <Button
+                      onClick={handleLogOut}
+                      variant="warning"
+                      className="mx-auto d-block"
+                    >
                       <Link className="text-decoration-none text-black">
                         Logout
                       </Link>
@@ -110,7 +116,7 @@ const Menubar = () => {
                   </>
                 ) : (
                   <>
-                    <Nav.Link>
+                    <Nav.Link className="d-block mx-auto">
                       <Button variant="warning">
                         <Link
                           to="/login"
