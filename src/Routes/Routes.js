@@ -18,11 +18,11 @@ export const routes = createBrowserRouter([
         element: <Home></Home>,
       },
       {
-        path: "/course",
+        path: "/courses",
         element: <CoursesPage></CoursesPage>,
         loader: () =>
           fetch(
-            "https://b610-lerning-platform-server-side-seven.vercel.app/course"
+            "https://b610-lerning-platform-server-side-seven.vercel.app/courses"
           ),
       },
       {

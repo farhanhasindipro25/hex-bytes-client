@@ -1,15 +1,16 @@
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
+import { useLoaderData } from "react-router-dom";
 import CourseCards from "./CourseCards";
-import CourseCategories from "./CourseCategories";
+import LeftNav from "./LeftNav";
 
 const CoursesPage = () => {
   return (
     <div>
-      <Container>
+      <Container className="mb-5">
         <Row>
           <Col lg="3">
-            <CourseCategories></CourseCategories>
+            <LeftNav></LeftNav>
           </Col>
           <Col lg="9">
             <CourseCards></CourseCards>
