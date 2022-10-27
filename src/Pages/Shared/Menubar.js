@@ -50,12 +50,20 @@ const Menubar = () => {
             <Nav>
               <Nav.Link className="fw-semibold text-white d-flex gap-2">
                 <Button variant="light">
-                  <MdDarkMode className="text-dark" />
+                  <MdDarkMode className="text-dark border-0" />
                 </Button>
                 <Button variant="warning">
-                  <MdWbSunny className="text-dark" />
+                  <MdWbSunny className="text-dark border-0" />
                 </Button>
-                <Button variant="warning">Login</Button>
+              </Nav.Link>
+              <Nav.Link>
+                <Button variant="warning">
+                  <Link to="/login" className="text-decoration-none text-black">
+                    Login
+                  </Link>
+                </Button>
+
+                <div></div>
               </Nav.Link>
             </Nav>
           </Navbar.Collapse>
