@@ -5,8 +5,12 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { MdDarkMode, MdWbSunny } from "react-icons/md";
+import { useContext } from "react";
+import { AuthContext } from "../../UserContext/UserContext";
 
 const Menubar = () => {
+  const { user } = useContext(AuthContext);
+
   return (
     <div>
       <Navbar bg="dark" variant="dark" expand="lg">
