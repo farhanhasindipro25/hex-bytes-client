@@ -4,20 +4,22 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
+import { MdDarkMode, MdWbSunny } from "react-icons/md";
 
 const Menubar = () => {
   return (
     <div>
-      <Navbar bg="dark" expand="lg">
+      <Navbar bg="dark" variant="dark" expand="lg">
         <Container>
-          <Navbar.Brand className="fw-bold text-white">
-            {" "}
-            Hex <span className="text-warning">Bytes</span>
+          <Navbar.Brand className="fw-bold">
+            <Link className="text-decoration-none text-white" to="/">
+              Hex <span className="text-warning">Bytes</span>
+            </Link>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mx-auto">
-              <Nav.Link className="px-5">
+              <Nav.Link className="px-5 text-center">
                 <Link
                   className="text-decoration-none fw-semibold text-white"
                   to="/"
@@ -25,7 +27,7 @@ const Menubar = () => {
                   Home
                 </Link>
               </Nav.Link>
-              <Nav.Link className="px-5">
+              <Nav.Link className="px-5 text-center">
                 <Link
                   className="text-decoration-none fw-semibold text-white"
                   to="/courses"
@@ -33,8 +35,10 @@ const Menubar = () => {
                   Courses
                 </Link>
               </Nav.Link>
-              <Nav.Link className="fw-semibold text-white px-5">FAQ</Nav.Link>
-              <Nav.Link className="px-5">
+              <Nav.Link className="fw-semibold text-white px-5 text-center">
+                FAQ
+              </Nav.Link>
+              <Nav.Link className="px-5 text-center">
                 <Link
                   className="text-decoration-none fw-semibold text-white"
                   to="/blog"
@@ -45,7 +49,12 @@ const Menubar = () => {
             </Nav>
             <Nav>
               <Nav.Link className="fw-semibold text-white d-flex gap-2">
-                <Button variant="light">Light</Button>
+                <Button variant="light">
+                  <MdDarkMode className="text-dark" />
+                </Button>
+                <Button variant="warning">
+                  <MdWbSunny className="text-dark" />
+                </Button>
                 <Button variant="warning">Login</Button>
               </Nav.Link>
             </Nav>

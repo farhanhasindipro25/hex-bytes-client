@@ -11,7 +11,7 @@ const LeftNav = () => {
           className="bg-warning px-1 py-2 rounded-2 my-1 text-center"
         >
           <Link
-            to={`/courses/${courses.id}`}
+            to={`/courses/${course.course_id}`}
             className="text-decoration-none text-black fw-normal"
           >
             {course.courseName}
