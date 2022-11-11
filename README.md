@@ -1,7 +1,7 @@
 # HEX BYTES
 
 ### Live Site Link
-https://hex-bytes.web.app
+https://euphonious-whiz.web.app/homepage
 
 ### Features
 
